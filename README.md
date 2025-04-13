@@ -13,7 +13,7 @@ LocalChat is a simple, local network chat application developed as part of the 9
 *   **Simple Interface:** Easy-to-use command-line interface for the server and a graphical user interface (GUI) for the client.
 *   **No Internet Required:** Functions entirely within the local network; no internet connection is needed.
 *   **Username Support:** Users can choose a username upon connecting.
-*   **Dynamic User Colors:** Each user is assigned a random color for visual distinction.
+*   --**Dynamic User Colors:** Each user is assigned a random color for visual distinction.--
 *   **GUI Client:** The client features a user-friendly graphical interface built with `tkinter` and `ttkbootstrap`.
 
 **Getting Started**
