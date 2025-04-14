@@ -11,7 +11,7 @@ sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
 sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 sock.bind(('', PORT))
 
-# รายชื่อผู้ใช้และสี
+# รายชื่อผู้ใช้
 clients = {}
 
 # ฟังก์ชันสำหรับรับข้อความจาก client
@@ -36,7 +36,7 @@ def broadcast_message(message):
 def accept_clients():
     while True:
         data, addr = sock.recvfrom(1024)
-        # เช็คชื่อผู้ใช้และสี
+        # เช็คชื่อผู้ใช้
         user_info = data.decode().split(": ")
         username = user_info[0]
         if addr not in clients:
