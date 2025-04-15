@@ -2,9 +2,36 @@ import socket
 import threading
 import random
 
+import os,sys
+
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+from os import system
+from ascii_magic import AsciiArt
+
+def set_cmd_size(columns, lines):
+    system(f'mode con: cols={columns} lines={lines}')
+
+def run():
+    set_cmd_size(151, 25)
+    print('\n')
+    try:
+        my_art = AsciiArt.from_image(resource_path('logo.png'))
+        my_art.to_terminal(columns=150)
+    except:
+        pass
+    print(f'{'POWER BY CLUSTER C':>149}')
+
 PORT = 12345
 BROADCAST_IP = '255.255.255.255'
-
 # ตั้งค่าการรับ-ส่ง UDP Broadcast
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
@@ -47,7 +74,9 @@ def accept_clients():
 accept_clients_thread = threading.Thread(target=accept_clients, daemon=True)
 accept_clients_thread.start()
 
+
 # Server อยู่ใน loop ตลอดเวลา
+run()
 print("Server is running...")
 while True:
     pass  # Server ทำงานตลอดเวลา
