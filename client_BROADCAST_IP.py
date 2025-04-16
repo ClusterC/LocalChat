@@ -19,16 +19,14 @@ sock.bind(('', PORT))
 def get_username():
     """Creates a custom dialog to get the username."""
     username = ""
-
     def on_ok():
         nonlocal username
-        username = entry.get()
+        name_input = entry.get().strip()
+        username = name_input if name_input else "User"  # ถ้าไม่พิมพ์ใช้ชื่อว่า User
         dialog.destroy()
 
     def on_close():
-        nonlocal username
-        username = "User"  # Default username if closed without input
-        dialog.destroy()
+        root.destroy()  # ปิดโปรแกรมทั้งหมดเมื่อกดกากบาท
 
     dialog = ttk.Toplevel(root)  # Use root as the parent
     dialog.title("Enter Username")
